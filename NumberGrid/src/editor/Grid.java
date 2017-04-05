@@ -624,7 +624,7 @@ public class Grid {
 	 * @param col Column to check
 	 * @throws IndexOutOfBoundsException If the row/column are outside of the bounds of the grid
 	 */
-	private void validate(int row, int col) throws IndexOutOfBoundsException {
+	public void validate(int row, int col) throws IndexOutOfBoundsException {
 		//Check if the row is 0 <= row < numRows
 		if(row < 0)
 			throw new IndexOutOfBoundsException("Row " + row);
@@ -646,7 +646,7 @@ public class Grid {
 	 * @param col2 column of the second point to check
 	 * @throws IndexOutOfBoundsException If the row/column are outside of the bounds of the grid or are not in the correct order
 	 */
-	private void validate(int row1, int col1, int row2, int col2) throws IndexOutOfBoundsException {
+	public void validate(int row1, int col1, int row2, int col2) throws IndexOutOfBoundsException {
 		validate(row1, col1);
 		validate(row2, col2);
 		//Check and make sure the first point is "before" the second point
