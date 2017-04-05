@@ -8,14 +8,42 @@ public class Value {
 		Invalid
 	}
 	
-	double dval;
-	String sval;
-	Type tag;
+	private double dval;
+	private String sval;
+	private Type tag;
 	
+	/**
+	 * Default constructor with no value
+	 */
 	public Value() {
 		dval = 0;
 		sval = null;
 		tag = Type.String;
+	}
+	
+	/**
+	 * Constructor that accepts an initial value
+	 * @param str
+	 */
+	public Value(String str) {
+		this();
+		set(str);
+	}
+	
+	public Type getTag() {
+		return tag;
+	}
+	
+	public void set(String str) {
+		//If it starts with a quote, then its a string. otherwise, its a number
+		if(str.substring(0, 1).equals("\"")) {
+			tag = Type.String;
+			sval = str.substring(1);
+		}
+		else {
+			tag = Type.Number;
+			dval = Double.parseDouble(str);
+		}
 	}
 	
 	public Value plus(Value val) {
