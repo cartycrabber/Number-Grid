@@ -294,6 +294,9 @@ public class Grid {
 		Node loc2Head = null;
 		Node destHead = null;
 		
+		//How many elements in the row/column
+		int elements;
+		
 		//Set the heads to the right cell, whether it is a row or column
 		switch(type) {
 		case Row:
@@ -306,6 +309,7 @@ public class Grid {
 			loc1Head = getNode(loc1, 0);
 			loc2Head = getNode(loc2, 0);
 			destHead = getNode(dest, 0);
+			elements = numColumns;
 			break;
 		case Column:
 			//Make sure the columns exist
@@ -316,6 +320,7 @@ public class Grid {
 			loc1Head = getNode(0, loc1);
 			loc2Head = getNode(0, loc2);
 			destHead = getNode(0, dest);
+			elements = numRows;
 			break;
 		default:
 			throw new UnsupportedOperationException("Unknown MathType");
@@ -324,8 +329,8 @@ public class Grid {
 		//Result of the math
 		Value result = null;
 		
-		//Iterate through each column in the rows
-		for(int i = 0; i < numColumns; i++) {
+		//Iterate through each element
+		for(int i = 0; i < elements; i++) {
 			//Do the math indicated in type
 			switch(operation) {
 			case Add:
@@ -498,14 +503,14 @@ public class Grid {
 		}
 		//Get the first node in the existing location
 		Node existingHead = getNode(0, col);
-		//The index of the row above. If this is the first row, then the index is the last row
+		//The index of the column to the left. If this is the first column, then the index is the last column
 		int leftIndex = (col == 0) ? numRows - 1 : col - 1;
 		System.out.println("left: " + leftIndex);
-		//Get the first node in the row to the left
+		//Get the first node in the column to the left
 		Node leftHead = getNode(leftIndex, 0);
 		
-		//Create our new row of the proper length
-		Node newHead = createLinkedRow(numRows);
+		//Create our new column of the proper length
+		Node newHead = createLinkedColumn(numRows);
 		
 		//Go through each node and set the right pointers
 		for(int i = 0; i < numRows; i++) {
